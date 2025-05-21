@@ -2,6 +2,7 @@ import os
 import math
 import string
 from collections import defaultdict
+from pathlib import Path
 
 
 class Foogle:
@@ -52,12 +53,10 @@ class Foogle:
 
     def calculate_idf(self):
         """Вычисляет IDF для каждого слова."""
-        print("Вычисляется IDF...")
         N = len(self.documents)
         for term in self.index:
             df = len(self.index[term])
             self.idf[term] = math.log(N / df)
-        print("IDF вычислен")
 
     def get_tf(self, term, document):
         """Вычисляет TF для заданного слова в документе."""
@@ -82,17 +81,36 @@ class Foogle:
         result = sorted(document_score.items(), key=lambda item: item[1], reverse=True)
         return result
 
+    def help(self):
+        print("Welcome to Foogle")
+        print("To move in directory with absolute route use")
+        print("cd directory_name")
+        print("To search in directory files use ")
+        print("search request_name")
 
-print("Введите директорию для поиска:")
-directory = input()
-if not os.path.exists(directory):
-    print(f"Директория {directory} не существует")
 
+
+directory = str(Path.cwd())
 engine = Foogle(directory)
+while True:
+    print(directory, end=' ')
+    line = input().split()
+    if line[0] == "cd":
+        if not os.path.exists(line[1]):
+            print(f"Директория {line[1]} не существует")
+        else:
+            directory += "/" + line[1]
+            engine = Foogle(directory)
+    elif line[0] == "help":
+        engine.help()
+    elif line[0] == "search":
+        result = engine.search(line[1])
+        for path in result:
+            print(path[0])
+    else:
+        print(f"There is no such command '{line[0]}'")
 
-query = "dogs"
-results = engine.search(query)
 
-print(f"\nРезультаты поиска: '{query}'")
-for document, score in results:
-    print(f"{document}: {score}")
+
+
+
