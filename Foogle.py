@@ -81,36 +81,41 @@ class Foogle:
         result = sorted(document_score.items(), key=lambda item: item[1], reverse=True)
         return result
 
-    def help(self):
+
+class Console:
+    @staticmethod
+    def help():
         print("Welcome to Foogle")
-        print("To move in directory with absolute route use")
+        print("To move into directory use")
         print("cd directory_name")
         print("To search in directory files use ")
         print("search request_name")
 
 
-
-directory = str(Path.cwd())
+directory = str(os.getcwd())
 engine = Foogle(directory)
 while True:
     print(directory, end=' ')
     line = input().split()
+    if not len(line):
+        continue
+
     if line[0] == "cd":
-        if not os.path.exists(line[1]):
-            print(f"Директория {line[1]} не существует")
+        rel_path_exists = os.path.exists(directory + '/' + line[1])
+        abs_path_exists = os.path.exists(line[1])
+        if not rel_path_exists and not abs_path_exists:
+            print(f"There is no '{line[1]}' directory")
+
         else:
-            directory += "/" + line[1]
+            directory = directory + "/" + line[1] \
+                if rel_path_exists \
+                else line[1]
             engine = Foogle(directory)
     elif line[0] == "help":
-        engine.help()
+        Console.help()
     elif line[0] == "search":
         result = engine.search(line[1])
         for path in result:
             print(path[0])
     else:
         print(f"There is no such command '{line[0]}'")
-
-
-
-
-
