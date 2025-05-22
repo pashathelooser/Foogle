@@ -39,9 +39,7 @@ class Foogle:
                 if os.path.isdir(possible_directory):
                     self.build_index(possible_directory)
                 continue
-            self.documents.append(filename
-                                  if directory_name == self.start_directory
-                                  else os.path.join(directory_name, filename))
+            self.documents.append(os.path.join(directory_name, filename))
             text = self.read_file(filename, directory_name)
             if not text:
                 continue
@@ -87,11 +85,14 @@ class Foogle:
 class Console:
     @staticmethod
     def help_command():
+        """Выводит все существующие команды"""
+        print()
         print("To move between directories use standart cd:")
         print("    cd directory_name")
         print("To search in directory files use ")
         print("    search request_name")
         print("To exit app type 'exit'")
+        print()
 
     def cd_command(self, cur_directory):
         """Обрабатывает введенную команду и возвращает новый путь"""
@@ -118,13 +119,25 @@ class Console:
             print(f"Directory '{trg_directory}' is not found")
         return cur_directory
 
+    @staticmethod
+    def print_search_result(finded_files):
+        if not len(finded_files):
+            print("There is no files to your query")
+        else:
+            print("<-----------------Finded some files:---------------->")
+        for file in finded_files:
+            print(file[0] + ":  ", file[1][0])
+        print()
+
 
 current_directory = str(os.getcwd())
 engine = Foogle(current_directory)
 new_console = Console()
+print("<==================================================================>")
 print("Welcome to Foogle")
 new_console.help_command()
-print("type 'help' for help ")
+print("type 'help' for help")
+print()
 while True:
     try:
         command = input(f"[{current_directory}]> ")
@@ -143,14 +156,7 @@ while True:
             if len(command.split()) == 1:
                 print("Type what you want to search")
                 continue
-            finded_files = engine.search(command)
-            if not len(finded_files):
-                print("There is no files to your query")
-            else:
-                print("<-----------------Finded some files:---------------->")
-            for file in finded_files:
-                print(file[0] + ":  ", file[1][0])
-            print()
+            new_console.print_search_result(engine.search(command))
 
         elif command.startswith("help"):
             Console.help_command()
@@ -162,5 +168,5 @@ while True:
         print("\nInterrupted by User.")
         break
 
-    #except Exception as e:
-    #    print(f"Exception occured: {e}")
+    except Exception as e:
+        print(f"Exception occured: {e}")
