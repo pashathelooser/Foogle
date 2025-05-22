@@ -2,7 +2,6 @@ import os
 import math
 import string
 from collections import defaultdict
-from pathlib import Path
 
 
 class Foogle:
@@ -36,20 +35,20 @@ class Foogle:
         """Создает индекс слов для каждого файла в директории."""
         for filename in os.listdir(directory_name):
             if not filename.endswith(".txt"):
-                possible_directory = directory_name + "/" + filename
+                possible_directory = os.path.join(directory_name, filename)
                 if os.path.isdir(possible_directory):
                     self.build_index(possible_directory)
                 continue
             self.documents.append(filename
                                   if directory_name == self.start_directory
-                                  else directory_name + "/" + filename)
+                                  else os.path.join(directory_name, filename))
             text = self.read_file(filename, directory_name)
             if not text:
                 continue
             cleaned_text = self.clean_text(text)
             tokens = self.tokenize(cleaned_text)
             for term in tokens:
-                self.index[term][filename] += 1
+                self.index[term][os.path.abspath(os.path.join(directory_name, filename))] += 1
 
     def calculate_idf(self):
         """Вычисляет IDF для каждого слова."""
@@ -66,56 +65,102 @@ class Foogle:
 
     def tf_idf(self, term, document):
         """Вычисляет TF-IDF для слова в документе."""
-        return self.get_tf(term, document) * self.idf.get(term, 0)
+        return self.get_tf(term, document) * self.idf[term]
 
     def search(self, query):
         """Ищет документы, содержащие запрос и сортирует их по TF-IDF."""
+        query = query[6:]
         cleaned_query = self.clean_text(query)
         query_terms = self.tokenize(cleaned_query)
 
-        document_score = defaultdict(float)
+        document_score = defaultdict(tuple)
         for document in self.documents:
             for term in query_terms:
-                document_score[document] += self.tf_idf(term, document)
+                tf = self.get_tf(term, document)
+                if tf:
+                    document_score[document] = (tf, self.tf_idf(term, document))
 
-        result = sorted(document_score.items(), key=lambda item: item[1], reverse=True)
+        result = sorted(document_score.items(), key=lambda item: item[1][1], reverse=True)
         return result
 
 
 class Console:
     @staticmethod
-    def help():
-        print("Welcome to Foogle")
-        print("To move into directory use")
-        print("cd directory_name")
+    def help_command():
+        print("To move between directories use standart cd:")
+        print("    cd directory_name")
         print("To search in directory files use ")
-        print("search request_name")
+        print("    search request_name")
+        print("To exit app type 'exit'")
 
+    def cd_command(self, cur_directory):
+        """Обрабатывает введенную команду и возвращает новый путь"""
+        parts = command.split()
+        if len(parts) == 1:
+            print("Select directory")
+            return
 
-directory = str(os.getcwd())
-engine = Foogle(directory)
-while True:
-    print(directory, end=' ')
-    line = input().split()
-    if not len(line):
-        continue
+        trg_directory = parts[1]
 
-    if line[0] == "cd":
-        rel_path_exists = os.path.exists(directory + '/' + line[1])
-        abs_path_exists = os.path.exists(line[1])
-        if not rel_path_exists and not abs_path_exists:
-            print(f"There is no '{line[1]}' directory")
-
+        if trg_directory == "..":
+            new_directory = os.path.dirname(cur_directory)
+        elif trg_directory == ".":
+            new_directory = cur_directory
+        elif trg_directory.startswith("/"):
+            new_directory = trg_directory
         else:
-            directory = directory + "/" + line[1] \
-                if rel_path_exists \
-                else line[1]
-            engine = Foogle(directory)
-    elif line[0] == "help":
-        Console.help()
-    elif line[0] == "search":
-        result = engine.search(line[1])
-        for path in result:
-            print(path[0])
-    else:
-        print(f"There is no such command '{line[0]}'")
+            new_directory = os.path.join(cur_directory, trg_directory)
+
+        if os.path.exists(new_directory) and os.path.isdir(new_directory):
+            cur_directory = new_directory
+            return cur_directory
+        else:
+            print(f"Directory '{trg_directory}' is not found")
+        return cur_directory
+
+
+current_directory = str(os.getcwd())
+engine = Foogle(current_directory)
+new_console = Console()
+print("Welcome to Foogle")
+new_console.help_command()
+print("type 'help' for help ")
+while True:
+    try:
+        command = input(f"[{current_directory}]> ")
+
+        if command == "exit":
+            print("Exiting application")
+            break
+
+        elif command.startswith("cd"):
+            new_directory = new_console.cd_command(current_directory)
+            if new_directory != current_directory:
+                current_directory = new_directory
+                engine = Foogle(current_directory)
+
+        elif command.startswith("search"):
+            if len(command.split()) == 1:
+                print("Type what you want to search")
+                continue
+            finded_files = engine.search(command)
+            if not len(finded_files):
+                print("There is no files to your query")
+            else:
+                print("<-----------------Finded some files:---------------->")
+            for file in finded_files:
+                print(file[0] + ":  ", file[1][0])
+            print()
+
+        elif command.startswith("help"):
+            Console.help_command()
+
+        elif command:
+            print(f"Undefined command: '{command}'")
+
+    except KeyboardInterrupt:
+        print("\nInterrupted by User.")
+        break
+
+    #except Exception as e:
+    #    print(f"Exception occured: {e}")

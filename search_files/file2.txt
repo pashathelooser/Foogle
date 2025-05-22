@@ -1,1 +1,1 @@
-This is the second file. Cats are cool. Cats are better.
+This is the second file. C# is better because it is bla bla bla

@@ -1,1 +1,1 @@
-This file talks about dogs. Dogs love to play.
+C++ is the best. It is fast as hell, but you need some proper skills
