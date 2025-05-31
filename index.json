@@ -1,0 +1,142 @@
+{
+    "working directory": {
+        "current": "C:\\Users\\pavel\\Desktop\\python_task\\Foogle"
+    },
+    "it": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "is": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 3,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 2,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "some": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "very": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "important": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "text": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "about": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "python": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "tasks": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file1.txt": 1
+    },
+    "this": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "the": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "second": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "file": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "c": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "better": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "because": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "bla": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 2
+    },
+    "bl": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file2.txt": 1
+    },
+    "best": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1,
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "fast": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "as": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "hell": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "but": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "you": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "need": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "proper": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "skills": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\file3.txt": 1
+    },
+    "i": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 2
+    },
+    "am": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 2
+    },
+    "using": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "basic": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "and": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "fine": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "not": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "too": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "old": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\another\\such_file.txt": 1
+    },
+    "html": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "language": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "ever": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "no": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "other": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    },
+    "options": {
+        "C:\\Users\\pavel\\Desktop\\python_task\\Foogle\\search_files\\new\\file4.txt": 1
+    }
+}
