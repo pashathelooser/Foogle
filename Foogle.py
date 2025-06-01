@@ -86,6 +86,8 @@ class Foogle:
 
     def read_docs(self):
         """Возвращает содержимое docs.json"""
+        if not os.path.exists("docs.json"):
+            return False
         with open("docs.json") as file:
             c = file.read().strip()
             if not c:
@@ -111,6 +113,8 @@ class Foogle:
 
     def read_index(self):
         """Возвращает содержимое index.json"""
+        if not os.path.exists("index.json"):
+            return False
         with open("index.json") as file:
             c = file.read().strip()
             if not c:
@@ -167,9 +171,9 @@ class Console:
         print("To exit app type 'exit'")
         print()
 
-    def cd_command(self, cur_directory):
+    def cd_command(self, cur_directory, com):
         """Обрабатывает введенную команду и возвращает новый путь"""
-        parts = command.split()
+        parts = com.split()
         if len(parts) == 1:
             print("Select directory")
             return
@@ -206,6 +210,7 @@ class Console:
 current_directory = str(os.getcwd())
 engine = Foogle(current_directory)
 new_console = Console()
+
 print("<==================================================================>")
 print("Welcome to Foogle")
 new_console.help_command()
@@ -223,7 +228,7 @@ while True:
             break
 
         elif command.startswith("cd"):
-            new_directory = new_console.cd_command(current_directory)
+            new_directory = new_console.cd_command(current_directory, command)
             if new_directory != current_directory:
                 current_directory = new_directory
                 engine = Foogle(current_directory)
